@@ -18,11 +18,11 @@ const Navbar = () => {
       </button>
       {open && (
         <div className="absolute left-0 top-full flex flex-col items-center bg-gray-900 text-white w-full text-lg gap-1 py-1">
-          <a href="#home">Home</a>
-          <a href="#about">About Me</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+          <a href="#home" onClick={()=>setOpen(false)}>Home</a>
+          <a href="#about" onClick={()=>setOpen(false)}>About Me</a>
+          <a href="#skills" onClick={()=>setOpen(false)}>Skills</a>
+          <a href="#projects" onClick={()=>setOpen(false)}>Projects</a>
+          <a href="#contact" onClick={()=>setOpen(false)}>Contact</a>
         </div>
       )}
       <div className="hidden lg:flex lg:items-center lg:gap-10 lg:font-bold">
