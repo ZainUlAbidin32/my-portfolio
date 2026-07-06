@@ -6,7 +6,7 @@ const Contact = () => {
     const [formData, setFormData] = useState({
         name:'',
         email: '',
-        messgage: '',
+        message: '',
     })
     const handleChange = (e) => {
         setFormData({
@@ -14,14 +14,28 @@ const Contact = () => {
             [e.target.name]: e.target.value,
         })
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        alert("Thank you for the response. I will get back to you soon!");
+        const response = await fetch('http://localhost:5000/api/contact',{
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData),
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+          alert(data.message)
         setFormData({
             name: '',
             email: '',
-            messgage: '',
-        })
+            message: '',
+        });
+        }
+        else {
+          alert(data.message);
+        }
     }
   return (
     <div id="contact" className="flex flex-col  items-center px-4 py-20 gap-4 bg-gradient-to-t from-gray-800 to-black text-white lg:px-30 lg:gap-15">
@@ -85,7 +99,7 @@ const Contact = () => {
             <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
                 <input className="border border-gray-600 py-1 px-2 focus:outline-0" type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
                 <input className="border border-gray-600 py-1 px-2 focus:outline-0" type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange}/>
-                <textarea className="border border-gray-600 py-1 px-2 focus:outline-0" rows={5} name="message" placeholder="Message" value={formData.messgage} onChange={handleChange}></textarea>
+                <textarea className="border border-gray-600 py-1 px-2 focus:outline-0" rows={5} name="message" placeholder="Message" value={formData.message} onChange={handleChange}></textarea>
                 <button className="bg-amber-600 cursor-pointer w-[30%] py-2 rounded-xl font-bold" type="submit">Send Message</button>
             </form>
         </div>
