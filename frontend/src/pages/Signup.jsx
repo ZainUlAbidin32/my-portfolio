@@ -17,7 +17,7 @@ const Signup = () => {
     }
     const handleSubmit = async(e) => {
         e.preventDefault();
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/signup`, {
+        const response = await fetch("https://my-portfolio-one-beta-59.vercel.app/api/auth/signup", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
