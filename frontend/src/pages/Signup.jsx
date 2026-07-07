@@ -52,7 +52,7 @@ const Signup = () => {
         <button type="submit" className="mt-6 bg-blue-700 text-white py-3 text-2xl cursor-pointer">Sign Up</button>
       </form>
       <p className="text-xl">
-        Already have a account? {" "} <Link to="/login" className="font-bold underline">Login</Link>
+        Already have a account? {" "} <Link to="/" className="font-bold underline">Login</Link>
       </p>
     </div>
   )
