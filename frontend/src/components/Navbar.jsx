@@ -1,10 +1,16 @@
 import { useState } from "react";
 import { HiOutlineMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("home");
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
   return (
     <div className="fixed top-0 w-full z-50 flex justify-between items-center text-white bg-gray-900 px-4 py-4 lg:px-8">
       <div className="text-xl font-bold">&lt;ZA /&gt;</div>
@@ -18,11 +24,30 @@ const Navbar = () => {
       </button>
       {open && (
         <div className="absolute left-0 top-full flex flex-col items-center bg-gray-900 text-white w-full text-lg gap-1 py-1">
-          <a href="#home" onClick={()=>setOpen(false)}>Home</a>
-          <a href="#about" onClick={()=>setOpen(false)}>About Me</a>
-          <a href="#skills" onClick={()=>setOpen(false)}>Skills</a>
-          <a href="#projects" onClick={()=>setOpen(false)}>Projects</a>
-          <a href="#contact" onClick={()=>setOpen(false)}>Contact</a>
+          <a href="#home" onClick={() => setOpen(false)}>
+            Home
+          </a>
+          <a href="#about" onClick={() => setOpen(false)}>
+            About Me
+          </a>
+          <a href="#skills" onClick={() => setOpen(false)}>
+            Skills
+          </a>
+          <a href="#projects" onClick={() => setOpen(false)}>
+            Projects
+          </a>
+          <a href="#contact" onClick={() => setOpen(false)}>
+            Contact
+          </a>
+          <button
+            onClick={() => {
+              setOpen(false);
+              handleLogout();
+            }}
+            className="mt-2 w-full border-t border-gray-700 pt-2 text-orange-500 font-bold"
+          >
+            Logout
+          </button>
         </div>
       )}
       <div className="hidden lg:flex lg:items-center lg:gap-10 lg:font-bold">
@@ -83,11 +108,12 @@ const Navbar = () => {
         </a>
       </div>
       <div className="hidden lg:block">
-        <a href="#connect">
-          <button className="bg-orange-600 text-white py-2 px-4 font-bold cursor-pointer">
-          Let's Talk
+        <button
+          onClick={handleLogout}
+          className="bg-orange-600 text-white py-2 px-4 font-bold cursor-pointer"
+        >
+          Logout
         </button>
-        </a>
       </div>
     </div>
   );

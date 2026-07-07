@@ -1,24 +1,18 @@
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import About from './components/About'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
-import Home from './components/Home'
-import Navbar from './components/Navbar'
-import Projects from './components/Projects'
-import Skills from './components/Skills'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+import Portfolio from './pages/Portfolio'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
 
   return (
-    <>
-    <Navbar/>
-    <Home/>
-    <About/>
-    <Skills/>
-    <Projects/>
-    <Contact/>
-    <Footer/>
-    </>
+    <Routes>
+      <Route path='/' element={<Login/>}/>
+      <Route path='/signup' element={<Signup/>}/>
+      <Route path='/portfolio' element={<ProtectedRoute><Portfolio/></ProtectedRoute>}/>
+    </Routes>
   )
 }
 
