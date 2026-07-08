@@ -29,7 +29,7 @@ const signUP = async (req, res) => {
             verificationToken,
         })
         await user.save();
-        const verificationLink = `http://localhost:5000/api/auth/verify/${verificationToken}`
+        const verificationLink = `${process.env.BACKEND_URL}/api/auth/verify/${verificationToken}`
         await sendEmail(
             email,
             "Verify Your Email",
